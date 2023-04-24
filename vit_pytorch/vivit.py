@@ -92,6 +92,8 @@ class ViT(nn.Module):
         frame_patch_size,
         num_classes,
         dim,
+        spatial_transformer,
+        temporal_transformer,
         spatial_depth,
         temporal_depth,
         heads,
@@ -131,8 +133,8 @@ class ViT(nn.Module):
         self.spatial_cls_token = nn.Parameter(torch.randn(1, 1, dim)) if not self.global_average_pool else None
         self.temporal_cls_token = nn.Parameter(torch.randn(1, 1, dim)) if not self.global_average_pool else None
 
-        self.spatial_transformer = Transformer(dim, spatial_depth, heads, dim_head, mlp_dim, dropout)
-        self.temporal_transformer = Transformer(dim, temporal_depth, heads, dim_head, mlp_dim, dropout)
+        self.spatial_transformer = spatial_transformer
+        self.temporal_transformer = temporal_transformer
 
         self.pool = pool
         self.to_latent = nn.Identity()
