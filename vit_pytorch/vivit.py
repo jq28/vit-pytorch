@@ -94,8 +94,6 @@ class ViT(nn.Module):
         dim,
         spatial_transformer,
         temporal_transformer,
-        spatial_depth,
-        temporal_depth,
         heads,
         mlp_dim,
         pool = 'cls',
